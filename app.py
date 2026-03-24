@@ -7,8 +7,8 @@ from matcher import get_top_matches
 st.title("Field Harmonization Tool")
 
 # Load data
-target_df = pd.read_csv("data/target.csv")
-source_df = pd.read_csv("data/soruce.csv")
+target_df = pd.read_csv("data/source_30.csv")
+source_df = pd.read_csv("data/target_1k.csv")
 
 # Precompute embeddings 
 target_texts = (
@@ -30,13 +30,18 @@ source_text = row["field_id"] + " | " + row["field_desc"]
 source_emb = embed_texts([source_text])[0]
 
 # get matches
-matches = get_top_matches(source_emb, target_embs, target_df)
+matches = get_top_matches(row, source_emb, target_df, target_embs)
 
 st.subheader("suggested Matches")
 
 for m in matches:
     st.write(f"**{m['target_field']}**")
     st.write(m["description"])
-    st.write(f"Score: {m['score']:.3f}")
+    
+    st.write(f"Final Score: {m['score']:.3f}")
+    st.write(f"- Desc: {m['desc_sim']:.3f}")
+    st.write(f"- Field ID match: {m['field_match']}")
+    st.write(f"- Response: {m['response_sim']:.3f}")
+    
     st.divider()
 
