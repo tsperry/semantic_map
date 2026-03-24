@@ -23,10 +23,10 @@ idx = st.number_input("Select source field index", 0, len(source_df)-1, 0)
 row = source_df.iloc[idx]
 
 st.subheader("Source Field")
-st.write(row["field_name"])
-st.write(row["description"])
+st.write(row["field_id"])
+st.write(row["field_desc"])
 
-source_text = row["field_name"] + " | " + row["description"]
+source_text = row["field_id"] + " | " + row["field_desc"]
 source_emb = embed_texts([source_text])[0]
 
 # get matches

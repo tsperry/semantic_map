@@ -11,6 +11,7 @@ def get_top_matches(source_emb, target_emb, target_df, top_k=5):
     for i in top_idx:
         results.append({
             "target_field": target_df.iloc[i]["field_id"],
-            "description": target_df.ilocp[i]["field_desc"],
+            "description": target_df.iloc[i]["field_desc"],
             "score": float(sims[i])
         })
+    return results
