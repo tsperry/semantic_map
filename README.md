@@ -13,6 +13,15 @@ A Streamlit-based utility for mapping source data dictionary fields to a target 
 - **Pandas:** Tabular data processing.
 - **Sentence-Transformers:** Semantic vector embedding generation.
 
+### setup
+```
+pip install sentence-transformers streamlit pandas scikit-learn
+```
+### run it
+```
+streamlit run app.py
+```
+
 ## TODO
 - [ ] **Data Upload:** Add st.file_uploader for dynamic CSV source/target selection.
 - [ ] **Persistence:** Save user mapping decisions (Map, Skip, Manual) to a mapping.csv file.
