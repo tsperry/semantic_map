@@ -23,8 +23,17 @@ streamlit run app.py
 ```
 
 ## TODO
+- [ ] **value mapping** - add value mapping for categorical fields  
+- [ ] **edit field_id** - allow user to edit field_id for new fields
+- [ ] **edit field_desc** - allow user to edit field_desc for new fields
+- [ ] **edit values** - allow user to edit values for new fields
+
 - [ ] **Data Upload:** Add st.file_uploader for dynamic CSV source/target selection.
-- [ ] **Persistence:** Save user mapping decisions (Map, Skip, Manual) to a mapping.csv file.
-- [ ] **State Management:** Optimize caching/session state to prevent redundant embedding recomputation.
-- [ ] **Export:** Add functionality to download the final mapping file.
 - [ ] **UI Polish:** Add pagination/filtering for large source datasets.
+
+### visualization
+- [ ] look into st.column_config for dataframe selection
+
+
+
+
