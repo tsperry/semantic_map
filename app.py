@@ -7,16 +7,24 @@ from matcher import get_top_matches, parse_responses
 st.set_page_config(layout="wide")
 st.title("Field Harmonization Tool")
 
+@st.cache_data
+def load_data():
+    return pd.read_csv("data/target.csv"), pd.read_csv("data/source.csv")
+
+@st.cache_data
+def get_target_embeddings(df):
+    texts = (df["field_id"] + " | " + df["field_desc"]).to_list()
+    return embed_texts(texts)
+
+@st.cache_data
+def get_source_embedding(text):
+    return embed_texts([text])[0]
+
 # Load data
-target_df = pd.read_csv("data/target.csv")
-source_df = pd.read_csv("data/source.csv")
+target_df, source_df = load_data()
 
-# Precompute embeddings 
-target_texts = (
-    target_df["field_id"] + " | " + target_df["field_desc"]
-).to_list()
-
-target_embs = embed_texts(target_texts)
+# Precompute target embeddings
+target_embs = get_target_embeddings(target_df)
 
 
 left, right = st.columns([1,3])
@@ -45,7 +53,7 @@ with right:
     st.write(parse_responses(source_df.at[idx,'values']))
 
     source_text = row["field_id"] + " | " + row["field_desc"]
-    source_emb = embed_texts([source_text])[0]
+    source_emb = get_source_embedding(source_text)
 
     # get matches
     matches = get_top_matches(row, source_emb, target_df, target_embs)
