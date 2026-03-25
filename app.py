@@ -72,7 +72,12 @@ with left:
     )
 
 selected_rows = selection.selection.rows
-idx = selected_rows[0] if selected_rows else 0
+if selected_rows:
+    idx = selected_rows[0]
+else:
+    # Auto-advance to the first unmapped record
+    unmapped = source_df[source_df['decision'] == 'Unmapped']
+    idx = unmapped.index[0] if not unmapped.empty else 0
 
 row = source_df.iloc[idx]
 
