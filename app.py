@@ -8,8 +8,8 @@ st.set_page_config(layout="wide")
 st.title("Field Harmonization Tool")
 
 # Load data
-target_df = pd.read_csv("data/target_1k.csv")
-source_df = pd.read_csv("data/source_30.csv")
+target_df = pd.read_csv("data/target.csv")
+source_df = pd.read_csv("data/source.csv")
 
 # Precompute embeddings 
 target_texts = (
